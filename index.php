@@ -84,19 +84,19 @@ include "action.php";
         <h3 class="text-center text-info">Add Record</h3>
         <form action="action.php" method="post" enctype="multipart/form-data">
 
-            <input type="hidden" name="id" value="<?php $id; ?>">
+            <input type="hidden" name="id" value="<?= $id; ?>">
 
             <div class="form-group">
-                <input type="text" name="name" class="form-control" value="<?= $name; ?>" place-holder="enter a name" required>
+                <input type="text" name="name" class="form-control" value="<?= $name; ?>" place-holder="enter a name"> required>
             </div>
             <div class="form-group">
-                <input type="email" name="email" value="<?= $email; ?>" class="form-control" place-holder="enter a email" required>
+                <input type="email" name="email" value="<?= $email; ?>" class="form-control" place-holder="enter a email"> required>
             </div>
             <div class="form-group">
-                <input type="tel" name="phone" class="form-control" value="<?= $phone; ?>" place-holder="enter contact" required>
+                <input type="tel" name="phone" class="form-control" value="<?= $phone; ?>" place-holder="enter contact"> required>
             </div>
             <div class="form-group">
-                <input type="hidden" name="oldimg" value="<?= $photo; ?>">
+                <input type="hidden" name="oldimage" value="<?= $photo; ?>">
                 <input type="file"  name="image" value="<?= $photo; ?>" class="custom-file" >
                 <img src="<?= $photo; ?>" width="120" class="img-thumbnail">
             </div>
@@ -105,7 +105,7 @@ include "action.php";
 
             <div class="form-group">
             <?php if($update==true){ ?>
-                <input type="submit" name="update" class="custom-file" class="btn btn-primary btn-block" value="update Record">
+                <input type="submit" name="update" class="custom-file" class="btn btn-success btn-block" value="update Record">
             <?php } else { ?>
                 <input type="submit" name="add" class="custom-file" class="btn btn-primary btn-block" value="add Record">
             <?php } ?>

@@ -7,7 +7,7 @@ $name="";
 $email="";
 $phone="";
 $photo="";
-$upload="";
+
 
 if(isset($_POST['add'])){
     $name=$_POST["name"];
@@ -57,7 +57,7 @@ if(isset($_GET['edit'])){
 
     $query="SELECT * FROM crud WHERE id=?";
     $stmt=$conn->prepare($query);
-    $stmt->bind_param('i',$id);
+    $stmt->bind_param("i",$id);
     $stmt->execute();
 
     $result=$stmt->get_result();
@@ -78,11 +78,11 @@ if(isset($_POST['update'])){
     $name=$_POST['name'];
     $email=$_POST['email'];
     $phone=$_POST['phone'];
-    $oldimage=$_FILES['image']['name'];
+    $oldimage=$_POST['oldimage'];
     if(isset($_FILES['image']['name'])&&($_FILES['image']['name']!="")){
         $newimage="uploads/".$_FILES['image']['name'];
         unlink($oldimage);
-        move_uploaded_file($_FILES['image']['tmp_name'],$newiamge);
+        move_uploaded_file($_FILES['image']['tmp_name'],$newimage);
     }
 
     else{
@@ -99,6 +99,24 @@ if(isset($_POST['update'])){
     header("location:index.php");
 
 
+}
+
+
+if(isset($_GET['details'])){
+    $id=$_GET['details'];
+
+    $query="SELECT * FROM crud WHERE id=?";
+    $stmt=$conn->prepare($query);
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
+    $result=$stmt->get_result();
+    $row=$result->fetch_assoc();
+
+    $vid=$row['id'];
+    $vname=$row['name'];
+    $vemail=$row['email'];
+    $vphone=$row['phone'];
+    $vphoto=$row['photo'];
 }
 
 ?>
